@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            var gridSize by remember {mutableStateOf(5)}
+            var gridSize by remember {mutableStateOf(3)}
             var playerTurn by remember { mutableStateOf("X") }
 
             val board = remember(gridSize) {
@@ -41,17 +42,30 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-            Grid(gridSize, board){
+            Column(modifier = Modifier.fillMaxSize()
+            ) {
+                Grid(Modifier.weight(4f),
+                    gridSize,
+                    board) {
                     i, j ->
 
-                if(board[i][j] == Cell.EMPTY){
-                    if (playerTurn == "X"){
-                        board[i][j] = Cell.X
-                        playerTurn = "O"
+                    if (board[i][j] == Cell.EMPTY) {
+                        if (playerTurn == "X") {
+                            board[i][j] = Cell.X
+                            playerTurn = "O"
+                        } else if (playerTurn == "O") {
+                            board[i][j] = Cell.O
+                            playerTurn = "X"
+                        }
                     }
-                    else if(playerTurn == "O"){
-                        board[i][j] = Cell.O
-                        playerTurn = "X"
+                }
+                ResetButton(Modifier.fillMaxSize()
+                            .weight(1f)
+                ) {
+                    for(i in 0 until gridSize){
+                        for(j in 0 until gridSize){
+                            board[i][j] = Cell.EMPTY
+                        }
                     }
                 }
             }

@@ -21,22 +21,23 @@ import androidx.compose.ui.Alignment
 
 @Composable
 fun Grid(
+    modifier: Modifier,
     gridSize: Int,
     board: List<List<Cell>>,
     onCellClick: (Int, Int) -> Unit
 ){
-    Column(modifier = Modifier
+    Column(modifier = modifier
         .fillMaxHeight()
     ) {
         for(i in 0..gridSize -1){
 
-            Row(modifier = Modifier
+            Row(modifier = modifier
                 .weight(1f)
                 .fillMaxWidth()
             ) {
                 for(j in 0..gridSize -1){
 
-                    Box(modifier = Modifier
+                    Box(modifier = modifier
                         .weight(1f)
                         .fillMaxSize()
                         .border(1.dp, color = Color.Black)
