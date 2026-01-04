@@ -13,21 +13,47 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
-fun ResetButton(
+fun PlayAgainButton(
     modifier: Modifier,
     onResetClick: () -> Unit
 ){
     Box(modifier = modifier
         .padding(10.dp)
         .background(
-            color = Color(0,128,0),
+            color = Color(43,43,43),
             shape = RoundedCornerShape(15.dp)
         )
         .clickable(onClick = { onResetClick() }),
         contentAlignment = Alignment.Center
     ){
-        Text(text = "Reset")
+        Text(text = "Play Again",
+            color = Color(242, 239, 234),
+            fontSize = 30.sp
+        )
+    }
+}
+
+@Composable
+fun ResetScoreButton(
+    modifier: Modifier,
+    onResetScoreClick: () -> Unit
+){
+    Box(modifier = modifier
+        .padding(10.dp)
+        .background(
+            color = Color(43,43,43),
+            shape = RoundedCornerShape(15.dp)
+        )
+        .clickable(onClick = { onResetScoreClick() }),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "Reset Score",
+            color = Color(242, 239, 234),
+            fontSize = 30.sp
+        )
     }
 }

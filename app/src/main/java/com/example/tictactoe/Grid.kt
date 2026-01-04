@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun Grid(
@@ -49,8 +50,14 @@ fun Grid(
                         Text(text = when (board[i][j]){
                             Cell.X -> "X"
                             Cell.O -> "O"
-                            Cell.EMPTY -> "empty"
-                        }
+                            Cell.EMPTY -> ""
+                        },
+                            fontSize = 50.sp,
+                            color = when (board[i][j]){
+                                Cell.X -> Color(58, 124, 165)
+                                Cell.O -> Color(179, 58, 58)
+                                Cell.EMPTY -> Color.Transparent
+                            }
                         )
                     }
                 }
